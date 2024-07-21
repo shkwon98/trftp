@@ -1,2 +1,1 @@
-# trftp
-TRFTP - Trivial but Reliable File Transfer Protocol library
+# TRFTP - Trivial but Reliable File Transfer Protocol library
