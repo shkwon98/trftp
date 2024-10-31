@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
 
 project(trftp
-    VERSION 0.0.1
+    VERSION 1.0.0
     LANGUAGES CXX
     DESCRIPTION "Trivial but Reliable File Transfer Protocol (TRFTP)"
 )
