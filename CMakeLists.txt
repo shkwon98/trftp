@@ -33,7 +33,9 @@ add_library(trftp-server ${TRFTP_SHARED_OR_STATIC})
 target_sources(trftp-server
     PRIVATE src/server/server.cpp
             src/server/server_transaction.cpp
+            src/server/server_log.cpp
             src/util.cpp
+            src/thread_safe_log.cpp
             src/udp_socket.cpp
 )
 target_include_directories(trftp-server
@@ -59,7 +61,9 @@ add_library(trftp-client ${TRFTP_SHARED_OR_STATIC})
 target_sources(trftp-client
     PRIVATE src/client/client.cpp
             src/client/client_transaction.cpp
+            src/client/client_log.cpp
             src/util.cpp
+            src/thread_safe_log.cpp
             src/udp_socket.cpp
 )
 target_include_directories(trftp-client
@@ -85,9 +89,12 @@ add_library(trftp ${TRFTP_SHARED_OR_STATIC})
 target_sources(trftp
     PRIVATE src/server/server.cpp
             src/server/server_transaction.cpp
+            src/server/server_log.cpp
             src/client/client.cpp
             src/client/client_transaction.cpp
+            src/client/client_log.cpp
             src/util.cpp
+            src/thread_safe_log.cpp
             src/udp_socket.cpp
 )
 target_link_libraries(trftp
