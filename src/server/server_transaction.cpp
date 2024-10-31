@@ -267,7 +267,7 @@ void ServerTransaction::CompleteHeader(TrftpMessage &msg, const MessageId xid, c
     msg.header.spid = 0xFD00U;
     msg.header.dpid = device_id_;
     msg.header.xid = std::uint32_t(xid);
-    msg.header.tpn = (tpl + sizeof(TrftpMessage::payload) - 1) / sizeof(TrftpMessage::payload);
+    msg.header.tpn = (tpl == 0) ? 1U : (tpl + sizeof(TrftpMessage::payload) - 1) / sizeof(TrftpMessage::payload);
     msg.header.tpl = tpl;
     msg.header.psn = psn;
     msg.header.pl = psn == (msg.header.tpn - 1) ? (tpl % sizeof(TrftpMessage::payload)) : sizeof(TrftpMessage::payload);
