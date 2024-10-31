@@ -1,0 +1,23 @@
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+find_dependency(Threads)
+
+# Directories where the .cmake files are placed
+set_and_check(TRFTP_INCLUDE_DIR "@PACKAGE_CMAKE_INSTALL_INCLUDEDIR@")
+
+# Our library dependencies (contains definitions for IMPORTED targets)
+include("${CMAKE_CURRENT_LIST_DIR}/@targets_export_name@.cmake")
+
+# These are IMPORTED targets created by @targets_export_name@.cmake
+set(TRFTP_LIBRARIES trftp::trftp)
+set(TRFTP_SERVER_LIBRARIES trftp::trftp-server)
+set(TRFTP_CLIENT_LIBRARIES trftp::trftp-client)
+
+check_required_components(trftp)
+check_required_components(trftp-server)
+check_required_components(trftp-client)
+
+# Provide the version information to the user
+set(TRFTP_VERSION "@PROJECT_VERSION@")
+message(STATUS "Found trftp: version @PROJECT_VERSION@")
