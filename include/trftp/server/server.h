@@ -21,6 +21,7 @@ class Server
 public:
     explicit Server(std::uint16_t port,
                     std::shared_ptr<ServerTransactionFactory> factory = std::make_shared<DefaultServerTransactionFactory>());
+    explicit Server(std::shared_ptr<ServerTransactionFactory> factory = std::make_shared<DefaultServerTransactionFactory>());
     ~Server();
 
     FtpStatus StartFileTransfer(const std::string &client_uri, const std::filesystem::path &file_path,

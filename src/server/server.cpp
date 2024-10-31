@@ -14,6 +14,11 @@ Server::Server(std::uint16_t port, std::shared_ptr<ServerTransactionFactory> fac
 {
 }
 
+Server::Server(std::shared_ptr<ServerTransactionFactory> factory)
+    : Server(64920, std::move(factory))
+{
+}
+
 Server::~Server()
 {
     is_running_ = false;
