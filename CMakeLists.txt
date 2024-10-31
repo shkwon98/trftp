@@ -190,3 +190,10 @@ export(EXPORT ${targets_export_name}
     NAMESPACE trftp::
 )
 export(PACKAGE trftp)
+
+
+# Add Examples
+option(TRFTP_BUILD_EXAMPLES "Build Examples" OFF)
+if (TRFTP_BUILD_EXAMPLES)
+    add_subdirectory(examples)
+endif()
