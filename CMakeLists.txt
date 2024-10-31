@@ -32,6 +32,7 @@ find_package(Threads REQUIRED)
 add_library(trftp-server ${TRFTP_SHARED_OR_STATIC})
 target_sources(trftp-server
     PRIVATE src/server/server.cpp
+            src/server/server_transaction.cpp
             src/util.cpp
             src/udp_socket.cpp
 )
@@ -57,6 +58,7 @@ add_library(trftp::trftp-server ALIAS trftp-server)
 add_library(trftp-client ${TRFTP_SHARED_OR_STATIC})
 target_sources(trftp-client
     PRIVATE src/client/client.cpp
+            src/client/client_transaction.cpp
             src/util.cpp
             src/udp_socket.cpp
 )
@@ -82,7 +84,9 @@ add_library(trftp::trftp-client ALIAS trftp-client)
 add_library(trftp ${TRFTP_SHARED_OR_STATIC})
 target_sources(trftp
     PRIVATE src/server/server.cpp
+            src/server/server_transaction.cpp
             src/client/client.cpp
+            src/client/client_transaction.cpp
             src/util.cpp
             src/udp_socket.cpp
 )
