@@ -32,6 +32,7 @@ find_package(Threads REQUIRED)
 add_library(trftp-server ${TRFTP_SHARED_OR_STATIC})
 target_sources(trftp-server
     PRIVATE src/server/server.cpp
+            src/util.cpp
 )
 target_include_directories(trftp-server
     PUBLIC  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -55,6 +56,7 @@ add_library(trftp::trftp-server ALIAS trftp-server)
 add_library(trftp-client ${TRFTP_SHARED_OR_STATIC})
 target_sources(trftp-client
     PRIVATE src/client/client.cpp
+            src/util.cpp
 )
 target_include_directories(trftp-client
     PUBLIC  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -79,6 +81,7 @@ add_library(trftp ${TRFTP_SHARED_OR_STATIC})
 target_sources(trftp
     PRIVATE src/server/server.cpp
             src/client/client.cpp
+            src/util.cpp
 )
 target_link_libraries(trftp
     PUBLIC  trftp::trftp-server
