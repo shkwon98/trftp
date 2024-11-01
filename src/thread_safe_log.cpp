@@ -40,10 +40,10 @@ ThreadStream::~ThreadStream()
 
 void ThreadStream::InitializeStreamProperties()
 {
-    this->imbue(os_->getloc());
-    this->precision(os_->precision());
-    this->width(os_->width());
-    this->setf(std::ios::fixed, std::ios::floatfield);
+    std::ignore = this->imbue(os_->getloc());
+    std::ignore = this->precision(os_->precision());
+    std::ignore = this->width(os_->width());
+    std::ignore = this->setf(std::ios::fixed, std::ios::floatfield);
 }
 
 // Get mutex for console streams (cout, cerr)
