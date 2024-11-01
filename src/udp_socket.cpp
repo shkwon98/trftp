@@ -44,7 +44,7 @@ UdpSocket::UdpSocket(std::uint16_t port)
     }
 
     // Successfully opened the socket, release the guard to prevent closing
-    socket_guard.release();
+    std::ignore = socket_guard.release();
 }
 
 UdpSocket::~UdpSocket()
