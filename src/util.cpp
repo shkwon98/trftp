@@ -3,7 +3,7 @@
 namespace trftp
 {
 
-static constexpr const std::uint32_t crc32_table[] = {
+static constexpr const std::uint32_t crc32_table[256] = {
     0x00000000, 0x77073096, 0xee0e612c, 0x990951ba, 0x076dc419, 0x706af48f, 0xe963a535, 0x9e6495a3, 0x0edb8832, 0x79dcb8a4,
     0xe0d5e91e, 0x97d2d988, 0x09b64c2b, 0x7eb17cbd, 0xe7b82d07, 0x90bf1d91, 0x1db71064, 0x6ab020f2, 0xf3b97148, 0x84be41de,
     0x1adad47d, 0x6ddde4eb, 0xf4d4b551, 0x83d385c7, 0x136c9856, 0x646ba8c0, 0xfd62f97a, 0x8a65c9ec, 0x14015c4f, 0x63066cd9,
@@ -59,11 +59,11 @@ std::uint32_t CalculateFileCrc32(const std::string &download_file)
     }
 
     auto file_size = std::filesystem::file_size(download_file);
-    ifs.seekg(0, std::ios::beg);
+    std::ignore = ifs.seekg(0, std::ios::beg);
     std::streamsize total_read_size = 0;
 
     auto crc32 = 0U;
-    std::vector<uint8_t> read_buf(4 * 1024);
+    std::vector<uint8_t> read_buf(4U * 1024U);
 
     while (ifs.read(reinterpret_cast<char *>(read_buf.data()), read_buf.size()) || ifs.gcount() > 0)
     {
@@ -83,29 +83,42 @@ std::uint32_t CalculateFileCrc32(const std::string &download_file)
 
 std::string FtpStatusToString(FtpStatus status)
 {
+    std::string status_str = "UNKNOWN";
+
     switch (status)
     {
     case FtpStatus::NTF:
-        return "NTF";
+        status_str = "NTF";
+        break;
     case FtpStatus::CHK:
-        return "CHK";
+        status_str = "CHK";
+        break;
     case FtpStatus::INFO:
-        return "INFO";
+        status_str = "INFO";
+        break;
     case FtpStatus::RDY:
-        return "RDY";
+        status_str = "RDY";
+        break;
     case FtpStatus::CXL:
-        return "CXL";
+        status_str = "CXL";
+        break;
     case FtpStatus::DATA:
-        return "DATA";
+        status_str = "DATA";
+        break;
     case FtpStatus::RTX:
-        return "RTX";
+        status_str = "RTX";
+        break;
     case FtpStatus::DONE:
-        return "DONE";
+        status_str = "DONE";
+        break;
     case FtpStatus::FIN:
-        return "FIN";
+        status_str = "FIN";
+        break;
     default:
-        return "UNKNOWN";
+        break;
     }
+
+    return status_str;
 }
 
 } // namespace trftp
