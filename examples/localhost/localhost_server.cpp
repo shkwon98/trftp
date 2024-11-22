@@ -33,10 +33,9 @@ int main(int argc, char **argv)
     }
 
     trftp::Server server;
-
     std::cout << "Starting file transfer to " << client_uri << "..." << std::endl;
-    const auto result = server.StartFileTransfer(client_uri, file_path, 0);
 
+    const auto result = server.StartFileTransfer(client_uri, file_path, 0);
     if (result == trftp::FtpStatus::NTF)
     {
         std::cerr << "Cannot find client: " << client_uri << std::endl;
@@ -47,10 +46,7 @@ int main(int argc, char **argv)
         std::cerr << "Transfer cancelled by error" << std::endl;
         return EXIT_FAILURE;
     }
-    else
-    {
-        std::cout << "Successfully transferred file to " << client_uri << std::endl;
-    }
 
+    std::cout << "Successfully transferred file to " << client_uri << std::endl;
     return EXIT_SUCCESS;
 }
