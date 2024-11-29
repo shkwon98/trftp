@@ -380,8 +380,8 @@ bool ServerTransaction::ValidateMessage(const TrftpRtx &payload, std::size_t pay
     }
     if (payload.retransmit_psn > expected.retransmit_psn)
     {
-        terr << ServerLog() << "Retransmit PSN (" << expected.retransmit_psn << ") is greater than current PSN ("
-             << payload.retransmit_psn << "). Discarding..." << std::endl;
+        terr << ServerLog() << "Requested rtx PSN (" << payload.retransmit_psn << ") is greater than current PSN ("
+             << expected.retransmit_psn << "). Discarding..." << std::endl;
         return false;
     }
 
