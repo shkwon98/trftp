@@ -253,6 +253,16 @@ void ServerTransaction::SendFileAsync(UdpSocket &udp_socket)
                 PrintSendLog(msg);
             }
 
+            // 4. Wait for the case where the client requests a retransmission near the end of the file
+            if (packet_sequence_number_ == total_packet_number_ - 1)
+            {
+                std::this_thread::sleep_for(std::chrono::seconds(1));
+                if (retransmit_psn_ != -1U)
+                {
+                    packet_sequence_number_.store(retransmit_psn_.exchange(-1));
+                }
+            }
+
             std::this_thread::sleep_until(now + std::chrono::microseconds(inter_packet_gap_));
         }
 
